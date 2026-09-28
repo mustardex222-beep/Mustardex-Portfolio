@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Portfolio & Downloads</title>
+    <!-- Google Fonts for elevated typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d4af37; /* Gold */
+            --primary-glow: rgba(212, 175, 55, 0.4);
+            --bg-color: #ffffff;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --nav-bg: rgba(255, 255, 255, 0.85);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* --- ATTRACTIVE TOP BAR (HEADER) --- */
+        header {
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px); /* Glassmorphism effect */
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 70px; /* Changed from fixed height to min-height for flexibility */
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(45deg, #d4af37, #9b7e1f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap; /* Allows links to wrap naturally if space gets tight */
+        }
+
+        nav a {
+            color: #555555;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+            white-space: nowrap; /* Prevents text inside a button from splitting */
+        }
+
+        /* Animated underline hover effect */
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 8px var(--primary);
+        }
+
+        nav a:hover {
+            color: #000000;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Responsiveness for Header */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                padding: 15px 20px;
+                gap: 10px;
+            }
+            
+            nav {
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            nav a {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* --- SECTION STYLES --- */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        h2.section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: #111111;
+            position: relative;
+        }
+
+        h2.section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            background: #f4f4f4;
+            overflow: hidden;
+        }
+
+        .slider-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s;
+        }
+
+        .arrow-btn {
+            position: absolute;
+            top: 50%;
+            right: 12px;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .arrow-btn:hover {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 0 12px var(--primary-glow);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin: 20px 0 10px;
+            font-size: 1.1rem;
+            color: #111111;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37, #aa8820);
+            color: #ffffff;
+            padding: 10px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        .download-btn:hover {
+            box-shadow: 0 6px 18px var(--primary-glow);
+            transform: scale(1.03);
+        }
+
+        /* --- SHORT STORY DISPLAY DESIGN --- */
+        .story-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+        }
+
+        @media (min-width: 768px) {
+            .story-container {
+                flex-direction: row;
+            }
+        }
+
+        .story-cover {
+            flex: 1;
+            min-height: 300px;
+            position: relative;
+            background: #f4f4f4;
+        }
+
+        .story-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .story-content {
+            flex: 1.2;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+        }
+
+        .story-content h3 {
+            font-size: 1.8rem;
+            margin-top: 0;
+            color: #111111;
+        }
+
+        .story-content p {
+            color: #555555;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .video-box {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+        }
+
+        video {
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        footer {
+            background: #f9f9f9;
+            color: #666666;
+            text-align: center;
+            padding: 25px;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR / HEADER -->
+    <header>
+        <div class="container">
+            <div class="logo">Mustardex</div>
+            <nav>
+                <a href="#ankara">Ankara Prints</a>
+                <a href="#video">Video Animation</a>
+                <a href="#story">Short Story</a>
+                <a href="#logos">Logo Design</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ANKARA PRINTS SECTION -->
+    <section id="ankara">
+        <div class="container">
+            <h2 class="section-title">Ankara Print Patterns</h2>
+            <div class="grid" id="ankara-grid">
+                <!-- Ankara Items injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO ANIMATION SECTION -->
+    <section id="video">
+        <div class="container">
+            <h2 class="section-title">Video Animation</h2>
+            <div class="video-box">
+                <video controls>
+                    <source src="Tortoise and the Yams.mp4" type="video/mp4">
+                    Your browser does not support HTML video.
+                </video>
+                <br>
+                <a href="Tortoise and the Yams.mp4" download="My_Animation.mp4" class="download-btn">Download Animation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHORT STORIES SECTION (WITH IMAGE DISPLAY) -->
+    <section id="story">
+        <div class="container">
+            <h2 class="section-title">Featured Short Story</h2>
+            <div class="story-container">
+                <!-- Book/Story Cover Image -->
+                <div class="story-cover">
+                    <img src="The Light of Bubu img.jpg" alt="Short Story Cover Art">
+                </div>
+                <!-- Story Information and Excerpt -->
+                <div class="story-content">
+                    <h3>Prologue: Excerpt From An Upcoming Fantasy Novel</h3>
+                    <p>Experience the magical realm of Bubu through this exclusive prologue chapter. Perfect for fans of deep world-building and mystical adventures.</p>
+                    <div>
+                        <!-- STORY DOWNLOAD FILE LINK BELOW -->
+                        <a href="The Light of Bubu.pdf" download="The_Light_of_Bubu.pdf" class="download-btn">Enjoy PDF Story</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOGO DESIGN SECTION -->
+    <section id="logos">
+        <div class="container">
+            <h2 class="section-title">Business & T-Shirt Logo Designs</h2>
+            <div class="grid" id="logo-grid">
+                <!-- Logo Items injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Mustardex. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT FOR DYNAMIC CARDS & CAROUSELS -->
+    <script>
+        // ANKARA PRINTS DATA
+        const ankaraData = [
+            { 
+                id: 'ankara1', 
+                title: 'Ankara Pattern 1', 
+                downloadFile: 'Ankara Print 1.zip',
+                files: ['Ankara print 1.jpeg', 'Ankara print 1 Bag.png'] 
+            },
+            { 
+                id: 'ankara2', 
+                title: 'Ankara Pattern 2', 
+                downloadFile: 'Ankara Print 2.zip',
+                files: ['Ankara print 2.jpeg', 'Ankara 2 sweater.jpg', 'Ankara 2 phone.jpg'] 
+            },
+            { 
+                id: 'ankara3', 
+                title: 'Ankara Pattern 3', 
+                downloadFile: 'Ankara Print 3.zip',
+                files: ['Ankara print 3.jpeg', 'Ankara 3 skirt.jpeg', 'Ankara 3 Bagpack.jpeg'] 
+            },
+            { 
+                id: 'ankara4', 
+                title: 'Ankara Pattern 4', 
+                downloadFile: 'Ankara Print 4.zip',
+                files: ['Ankara print 4.jpeg', 'Ankara 4 shirt.jpeg', 'Ankara 4 sneakers.jpeg'] 
+            },
+            { 
+                id: 'ankara5', 
+                title: 'Ankara Pattern 5', 
+                downloadFile: 'Ankara Print 5.zip',
+                files: ['Ankara print 5.jpeg', 'Ankara 5 skirt.jpeg', 'Ankara 5 slippers.jpeg'] 
+            }
+        ];
+
+        // LOGO DESIGN DATA 
+        const logoData = [
+            { 
+                id: 'logo1', 
+                title: 'Corporate Logo', 
+                downloadFile: 'Business Logo.zip',
+                files: ['Logo 1.png', 'Logo 2.png', 'Logo 3.png', 'Logo 4.png', 'Logo 5.png'] 
+            },
+            { 
+                id: 'logo2', 
+                title: 'T-Shirt Logo', 
+                downloadFile: 'T-Shirt Logo.zip',
+                files: ['T-Shirt logo 1.png', 'T-Shirt logo 2.png', 'T-Shirt logo 3.png', 'T-Shirt logo 4.png', 'T-Shirt logo 5.png'] 
+            }
+        ];
+
+        const sliderIndices = {};
+
+        function createCards(dataArray, containerId) {
+            const container = document.getElementById(containerId);
+            
+            dataArray.forEach(item => {
+                sliderIndices[item.id] = 0;
+                window[`images_${item.id}`] = item.files;
+
+                const cardHTML = `
+                    <div class="card">
+                        <div class="slider-container">
+                            <img id="img_${item.id}" src="${item.files[0]}" class="slider-img" alt="${item.title}">
+                            <button class="arrow-btn" onclick="nextImage('${item.id}')">&#10095;</button>
+                        </div>
+                        <h3>${item.title}</h3>
+                        <a href="${item.downloadFile}" download="${item.id}_set.zip" class="download-btn">Download Set</a>
+                    </div>
+                `;
+                container.innerHTML += cardHTML;
+            });
+        }
+
+        function nextImage(id) {
+            const imgArray = window[`images_${id}`];
+            let currentIndex = sliderIndices[id];
+            
+            currentIndex = (currentIndex + 1) % imgArray.length;
+            
+            sliderIndices[id] = currentIndex;
+            document.getElementById(`img_${id}`).src = imgArray[currentIndex];
+        }
+
+        window.onload = () => {
+            createCards(ankaraData, 'ankara-grid');
+            createCards(logoData, 'logo-grid');
+        };
+    </script>
+</body>
+</html>

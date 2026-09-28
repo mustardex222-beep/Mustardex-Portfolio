@@ -46,7 +46,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            min-height: 70px; /* Changed from fixed height to min-height for flexibility */
+            min-height: 70px;
         }
 
         .logo {
@@ -62,7 +62,7 @@
         nav {
             display: flex;
             gap: 25px;
-            flex-wrap: wrap; /* Allows links to wrap naturally if space gets tight */
+            flex-wrap: wrap;
         }
 
         nav a {
@@ -73,7 +73,7 @@
             position: relative;
             padding: 5px 0;
             transition: color 0.3s ease;
-            white-space: nowrap; /* Prevents text inside a button from splitting */
+            white-space: nowrap;
         }
 
         /* Animated underline hover effect */
@@ -228,7 +228,13 @@
             transform: scale(1.03);
         }
 
-        /* --- SHORT STORY DISPLAY DESIGN --- */
+        /* --- FEATURED BOOKS DISPLAY DESIGN --- */
+        .stories-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
         .story-container {
             background: var(--card-bg);
             border-radius: 12px;
@@ -315,7 +321,7 @@
             <nav>
                 <a href="#ankara">Ankara Prints</a>
                 <a href="#video">Video Animation</a>
-                <a href="#story">Short Story</a>
+                <a href="#story">Featured Books</a>
                 <a href="#logos">Logo Design</a>
             </nav>
         </div>
@@ -346,24 +352,41 @@
         </div>
     </section>
 
-    <!-- SHORT STORIES SECTION (WITH IMAGE DISPLAY) -->
+    <!-- FEATURED BOOKS & SHORT STORIES SECTION -->
     <section id="story">
         <div class="container">
-            <h2 class="section-title">Featured Short Story</h2>
-            <div class="story-container">
-                <!-- Book/Story Cover Image -->
-                <div class="story-cover">
-                    <img src="The Light of Bubu img.jpg" alt="Short Story Cover Art">
-                </div>
-                <!-- Story Information and Excerpt -->
-                <div class="story-content">
-                    <h3>Prologue: Excerpt From An Upcoming Fantasy Novel</h3>
-                    <p>Experience the magical realm of Bubu through this exclusive prologue chapter. Perfect for fans of deep world-building and mystical adventures.</p>
-                    <div>
-                        <!-- STORY DOWNLOAD FILE LINK BELOW -->
-                        <a href="The Light of Bubu.pdf" download="The_Light_of_Bubu.pdf" class="download-btn">Enjoy PDF Story</a>
+            <h2 class="section-title">Featured Books & Stories</h2>
+            <div class="stories-list">
+                
+                <!-- STORY 1: Fantasy Novel Excerpt -->
+                <div class="story-container">
+                    <div class="story-cover">
+                        <img src="The Light of Bubu img.jpg" alt="Short Story Cover Art">
+                    </div>
+                    <div class="story-content">
+                        <h3>Prologue: Excerpt From An Upcoming Fantasy Novel</h3>
+                        <p>Be riveted by this exclusive prologue chapter. Perfect for fans of fantasy and mystical adventures.</p>
+                        <div>
+                            <a href="The Light of Bubu.pdf" download="The_Light_of_Bubu.pdf" class="download-btn">Download PDF Story</a>
+                        </div>
                     </div>
                 </div>
+
+                <!-- STORY 2: Forex Trading Book -->
+                <div class="story-container">
+                    <div class="story-cover">
+                        <img src="MegaZ.jpg" alt="Forex Trading Book Cover">
+                    </div>
+                    <div class="story-content">
+                        <h3>UNLEASH THE POWER OF INTELLIGENT TRADING</h3>
+                        <p>The Ultimate Forex & Binary Options Blueprint: Learn how to read the markets like a pro.
+</p>
+                        <div>
+                            <a href="https://rexland5.gumroad.com/l/cfljpp?_gl=1*12bqk8*_ga*NDgxNTM4NTY2LjE3ODkxODA0MjM.*_ga_6LJN6D94N6*czE3OTA1NjQ3NTckbzIkZzAkdDE3OTA1NjQ3NTckajYwJGwwJGgw" target="_blank" class="download-btn">Get Forex Book</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
